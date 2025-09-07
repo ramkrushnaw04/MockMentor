@@ -1,10 +1,10 @@
 import client from "../config/client";
 
-export async function evaluateCode(code: string, language: string) {
-
+export async function evaluateCode(code: string, language: string, languageId: number) {
+    console.log(languageId)
     const response = await client.post(
         "/evaluate", 
-        { code, language }
+        { code, language, languageId }
     );
-    console.log(response)
+    console.log(response.data)
 }
