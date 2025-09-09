@@ -18,14 +18,15 @@ import {
   ArrowRight,
   Quote,
 } from "lucide-react"
-import { useState, useEffect, useRef } from "react"
+import { useState, useRef } from "react"
 import { useNavigate } from "react-router-dom"
+import useDarkMode from "../hooks/useDarkMode"
 
 export default function IntroPage() {
-  const [isDark, setIsDark] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const heroRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
+  const { isDark, toggleDarkMode } = useDarkMode();
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -35,25 +36,6 @@ export default function IntroPage() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0])
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme")
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-      setIsDark(true)
-      document.documentElement.classList.add("dark")
-    }
-  }, [])
-
-  const toggleTheme = () => {
-    setIsDark(!isDark)
-    if (!isDark) {
-      document.documentElement.classList.add("dark")
-      localStorage.setItem("theme", "dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-      localStorage.setItem("theme", "light")
-    }
-  }
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -212,7 +194,7 @@ export default function IntroPage() {
               </motion.a>
 
               <motion.button
-                onClick={toggleTheme}
+                onClick={toggleDarkMode}
                 className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
