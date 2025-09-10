@@ -66,6 +66,7 @@ int main() {
     return (
         <div className="w-screen h-screen flex bg-gray-950 dark:bg-gray-50 text-gray-200 dark:text-gray-900">
             {/* Left side: problem */}
+
             <div className="w-1/2 h-full overflow-y-auto p-6 bg-gray-900 dark:bg-gray-100 border-r border-gray-800 dark:border-gray-300">
                 {problem && (
                     <div className="space-y-5">

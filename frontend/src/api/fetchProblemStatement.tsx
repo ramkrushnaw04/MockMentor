@@ -3,7 +3,7 @@ import client from "../config/client";
 export async function fetchProblemStatement(id: string) {
     try {
         // console.log('fetching problem statement for id:', id);
-        const response = await client.get(`/problem/${id}`);
+        const response = await client.get(`/problems/${id}`);
         // console.log(response.data)
         return response.data;
     } catch (error: any) {

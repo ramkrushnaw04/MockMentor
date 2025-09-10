@@ -3,7 +3,7 @@ import client from "../config/client";
 export async function runSampleCases(code: string, testCases: any, languageId: number) {
     // console.log('Test Cases in API Call: ', testCases);
     const response = await client.post(
-        "/evaluate", 
+        "/problems/evaluate", 
         { code, testCases, languageId }
     );
     return response.data
@@ -12,7 +12,7 @@ export async function runSampleCases(code: string, testCases: any, languageId: n
 
 export async function submitProblem(code: string, languageId: number, problemId: string) {
     const response = await client.post(
-        "/submit-problem", 
+        "/problems/submit", 
         { code, languageId, problemId }
     );
     return response.data

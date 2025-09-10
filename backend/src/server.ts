@@ -10,6 +10,7 @@ import { evaluateTestCases } from './routes/evaluateTestCases'
 import { createProblem } from './routes/createProblem'
 import { getProblem } from './routes/getProblem'
 import { prepareProblemSubmission } from './middlewares/prepareProblemSubmission'
+import getInterviewResponse from './routes/getInterviewResponse'
 
 // } config
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || "").split(",");
@@ -34,10 +35,11 @@ app.use(express.json());
 app.get('/', (_, res) => {
   res.send('MockMentor API is running');
 });
-app.post('/evaluate', evaluateTestCases);
-app.post('/problem', createProblem);
-app.get('/problem/:id', getProblem);
-app.post('/submit-problem', prepareProblemSubmission, evaluateTestCases)
+app.post('/problems/evaluate', evaluateTestCases);
+app.post('/problems', createProblem);
+app.get('/problems/:id', getProblem);
+app.post('/problems/submit', prepareProblemSubmission, evaluateTestCases)
+app.post('/interview/respond', getInterviewResponse)
 
 // server
 app.listen(PORT, () => {

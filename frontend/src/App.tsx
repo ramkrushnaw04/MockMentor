@@ -2,24 +2,28 @@
 import IntroPage from './pages/IntroPage'
 import Login from './pages/Login'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
-import Home from './pages/Home';
+import InterviewRoom from './pages/InterviewRoom';
+import InterviewSetup from './pages/interviewSetup';
 
 function App() {
-
-     
   return (
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<IntroPage />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/home" element={
+            <Route path="/interview-room" element={
                 // <ProtectedRoute >
                 //     <Home />
                 // </ProtectedRoute>
-                <Home/>
+                <InterviewRoom/>
             } />
-            <Route path="*" element={<Login />} />
+            <Route path="/interview-setup" element={
+                // <ProtectedRoute >
+                //     <Home />
+                // </ProtectedRoute>
+                <InterviewSetup/>
+            } />
+            <Route path="*" element={<IntroPage />} />
         </Routes>
     </BrowserRouter>
   )
